@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=src/web/app.py
+      - FLASK_ENV=production
+      - SECRET_KEY=your-secret-key-change-me
+      - DATABASE_URL=sqlite:///webscanner.db
+    volumes:
+      - ./reports:/app/reports
+      - ./src:/app/src
+    restart: unless-stopped
+
+  # Optional: Add a database service if you want to use PostgreSQL instead of SQLite
+  # db:
+  #   image: postgres:13
+  #   environment:
+  #     - POSTGRES_USER=webscanner
+  #     - POSTGRES_PASSWORD=your-password
+  #     - POSTGRES_DB=webscanner
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

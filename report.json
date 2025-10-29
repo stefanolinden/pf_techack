@@ -1,0 +1,15 @@
+{
+    "target_url": "http://example.com",
+    "scan_date": "2025-10-28_23-10-00",
+    "findings": {
+        "xss": [
+            {
+                "type": "XSS",
+                "severity": "High",
+                "url": "http://example.com",
+                "parameter": "search",
+                "payload": "<script>alert(\"XSS\")</script>"
+            }
+        ]
+    }
+}

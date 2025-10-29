@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h2>Security Dashboard</h2>
+        <p>Welcome back, {{ current_user.username }}! Here's your security overview.</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title">Total Scans</h5>
+                <h2 class="card-text">{{ scans|length }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title">High Risk Findings</h5>
+                <h2 class="card-text" id="highRiskCount">0</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title">Average Risk Score</h5>
+                <h2 class="card-text" id="avgRiskScore">0.0</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title">Vulnerability Distribution</h5>
+                <canvas id="vulnerabilityChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title">Risk Trend</h5>
+                <canvas id="riskTrendChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Recent Scans</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Target URL</th>
+                                <th>Scan Date</th>
+                                <th>Risk Score</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for scan in scans|sort(attribute='timestamp', reverse=True) %}
+                            <tr>
+                                <td>{{ scan.target_url }}</td>
+                                <td>{{ scan.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-{{ 'danger' if scan.risk_score > 7 else 'warning' if scan.risk_score > 4 else 'success' }}"
+                                             role="progressbar"
+                                             style="width: {{ (scan.risk_score or 0) * 10 }}%">
+                                            {{ "%.1f"|format(scan.risk_score or 0) }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-{{ 'success' if scan.status == 'completed' else 'warning' }}">
+                                        {{ scan.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('scan_results', scan_id=scan.id) }}" class="btn btn-sm btn-primary">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Calculate statistics
+    let scans = {{ scans|tojson }};
+    let highRiskCount = 0;
+    let totalRiskScore = 0;
+    let validScans = 0;
+    
+    scans.forEach(scan => {
+        if (scan.risk_score) {
+            if (scan.risk_score > 7) highRiskCount++;
+            totalRiskScore += scan.risk_score;
+            validScans++;
+        }
+    });
+    
+    let avgRiskScore = validScans > 0 ? (totalRiskScore / validScans).toFixed(1) : 0;
+    
+    // Update statistics
+    document.getElementById('highRiskCount').textContent = highRiskCount;
+    document.getElementById('avgRiskScore').textContent = avgRiskScore;
+    
+    // Vulnerability Distribution Chart
+    const vulnCtx = document.getElementById('vulnerabilityChart').getContext('2d');
+    new Chart(vulnCtx, {
+        type: 'pie',
+        data: {
+            labels: ['High', 'Medium', 'Low'],
+            datasets: [{
+                data: [highRiskCount, 
+                       scans.filter(s => s.risk_score > 4 && s.risk_score <= 7).length,
+                       scans.filter(s => s.risk_score <= 4).length],
+                backgroundColor: ['#dc3545', '#ffc107', '#28a745']
+            }]
+        }
+    });
+    
+    // Risk Trend Chart
+    const trendCtx = document.getElementById('riskTrendChart').getContext('2d');
+    const sortedScans = scans
+        .filter(s => s.risk_score)
+        .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
+        .slice(-10);
+        
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: sortedScans.map(s => new Date(s.timestamp).toLocaleDateString()),
+            datasets: [{
+                label: 'Risk Score',
+                data: sortedScans.map(s => s.risk_score),
+                borderColor: '#0d6efd',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 10
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}
