@@ -179,6 +179,32 @@ Veja documentação completa em:
 
 ---
 
+## 🐳 DOCKER TESTADO E FUNCIONANDO!
+
+### ✅ Docker Build: SUCCESS
+### ✅ Docker Run: SUCCESS
+### ✅ Docker Compose: SUCCESS
+### ✅ Healthcheck: PASSING
+
+**Acesso via Docker:**
+```bash
+# Usando docker-compose (RECOMENDADO)
+sudo docker-compose up -d
+
+# Ver status
+sudo docker-compose ps
+
+# Ver logs
+sudo docker-compose logs -f web-scanner
+```
+
+**URL:** http://localhost:8080  
+**Login:** admin / admin123
+
+**Detalhes completos:** Ver `docs/docker_test_report.md`
+
+---
+
 ## ✅ CHECKLIST DO QUE TESTAR
 
 - [ ] Login no dashboard
