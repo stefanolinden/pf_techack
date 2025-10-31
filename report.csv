@@ -1,2 +1,0 @@
-Vulnerability Type,Severity,URL,Description,Details
-xss,High,http://example.com,,"parameter: search, payload: <script>alert(""XSS"")</script>"

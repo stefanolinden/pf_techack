@@ -1,31 +1,43 @@
 FROM python:3.10-slim
 
+LABEL maintainer="Web Security Scanner Team"
+LABEL description="Web Security Scanner - Automated vulnerability detection tool"
+
 # Set working directory
 WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
-    libpq-dev \
+    libxml2-dev \
+    libxslt-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first to leverage Docker cache
-COPY requirements.txt .
+# Copy requirements first for better caching
+COPY src/requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
-COPY . .
+# Copy application code
+COPY src/ .
 
 # Create necessary directories
-RUN mkdir -p /app/reports
+RUN mkdir -p templates static logs
+
+# Expose port for web interface
+EXPOSE 8080
 
 # Set environment variables
-ENV FLASK_APP=src/web/app.py
-ENV FLASK_ENV=production
-ENV PYTHONPATH=/app
+ENV FLASK_APP=web_app.py
+ENV PYTHONUNBUFFERED=1
 
-# Expose port
-EXPOSE 5000
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD python -c "import requests; requests.get('http://localhost:8080/', timeout=2)" || exit 1
 
-# Run gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "src.web.app:app"]
+# Default command - web interface
+CMD ["python", "web_app.py"]
+
+# Alternative: Run CLI scanner
+# CMD ["python", "main.py", "--help"]

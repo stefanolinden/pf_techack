@@ -1,0 +1,69 @@
+name: Security Scanner CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Create virtual environment
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+    
+    - name: Install dependencies
+      run: |
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install -r src/requirements.txt
+    
+    - name: Run unit tests
+      run: |
+        source venv/bin/activate
+        python src/tests/test_scanner.py
+    
+    - name: Test CLI interface
+      run: |
+        source venv/bin/activate
+        python src/main.py --version
+    
+    - name: Security check
+      run: |
+        source venv/bin/activate
+        pip install bandit safety
+        bandit -r src/ -f json -o bandit-report.json || true
+        safety check --json || true
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results
+        path: |
+          bandit-report.json
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build Docker image
+      run: docker build -t web-security-scanner:${{ github.sha }} .
+    
+    - name: Test Docker image
+      run: |
+        docker run --rm web-security-scanner:${{ github.sha }} python main.py --version

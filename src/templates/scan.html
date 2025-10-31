@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}New Scan - Web Security Scanner{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="mb-4">
+            <i class="fas fa-search"></i> New Security Scan
+        </h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="url" class="form-label">Target URL</label>
+                        <input type="url" class="form-control" id="url" name="url" 
+                               placeholder="http://example.com" required autofocus>
+                        <div class="form-text">Enter the complete URL including http:// or https://</div>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Warning:</strong> Only scan websites you own or have explicit permission to test.
+                        Unauthorized scanning may be illegal.
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                        <i class="fas fa-play"></i> Start Scan
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> What will be tested?</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><strong>XSS (Cross-Site Scripting)</strong> - Script injection vulnerabilities</li>
+                    <li><strong>SQL Injection</strong> - Database query manipulation</li>
+                    <li><strong>CSRF</strong> - Cross-Site Request Forgery protection</li>
+                    <li><strong>Directory Traversal</strong> - Unauthorized file access</li>
+                    <li><strong>Information Disclosure</strong> - Sensitive data exposure</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Web Security Scanner{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">
+    <i class="fas fa-tachometer-alt"></i> Dashboard
+</h1>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-search"></i> Total Scans
+                </h5>
+                <p class="display-4">{{ total_scans }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i> Total Vulnerabilities
+                </h5>
+                <p class="display-4">{{ total_vulnerabilities }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-clock"></i> Active User
+                </h5>
+                <p class="display-6">{{ current_user.name }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-history"></i> Recent Scans</h5>
+            </div>
+            <div class="card-body">
+                {% if recent_scans %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>URL</th>
+                                <th>Vulnerabilities</th>
+                                <th>Risk Level</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for scan in recent_scans %}
+                            <tr>
+                                <td>{{ scan.timestamp[:19] }}</td>
+                                <td>
+                                    <a href="{{ url_for('results', scan_id=scan.id) }}">
+                                        {{ scan.url[:50] }}{% if scan.url|length > 50 %}...{% endif %}
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">{{ scan.total_vulnerabilities }}</span>
+                                </td>
+                                <td>
+                                    {% if scan.risk_level == 'CRITICAL' %}
+                                        <span class="badge badge-critical">CRITICAL</span>
+                                    {% elif scan.risk_level == 'HIGH' %}
+                                        <span class="badge badge-high">HIGH</span>
+                                    {% elif scan.risk_level == 'MEDIUM' %}
+                                        <span class="badge badge-medium">MEDIUM</span>
+                                    {% elif scan.risk_level == 'LOW' %}
+                                        <span class="badge badge-low">LOW</span>
+                                    {% else %}
+                                        <span class="badge bg-success">SECURE</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('results', scan_id=scan.id) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center text-muted py-4">
+                    <i class="fas fa-inbox fa-3x mb-3"></i>
+                    <p>No scans yet. <a href="{{ url_for('scan') }}">Start your first scan</a></p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Ready to scan a website?</h5>
+                <a href="{{ url_for('scan') }}" class="btn btn-primary btn-lg mt-3">
+                    <i class="fas fa-search"></i> Start New Scan
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
