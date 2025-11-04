@@ -13,7 +13,7 @@ O Web Security Scanner agora possui **13 ferramentas de detecção de vulnerabil
 
 ## Ferramentas Implementadas
 
-### 1. **XSS (Cross-Site Scripting)** ✅
+### 1. **XSS (Cross-Site Scripting)** 
 **Severidade:** HIGH/CRITICAL  
 **Descrição:** Detecta injeção de scripts maliciosos em parâmetros e formulários  
 **Payloads testados:** 5 variações diferentes
@@ -29,7 +29,7 @@ O Web Security Scanner agora possui **13 ferramentas de detecção de vulnerabil
 
 ---
 
-### 2. **SQL Injection** ✅
+### 2. **SQL Injection** 
 **Severidade:** CRITICAL  
 **Descrição:** Detecta vulnerabilidades de injeção SQL através de payloads e análise de erros  
 **Payloads testados:** 7 variações
@@ -49,7 +49,7 @@ O Web Security Scanner agora possui **13 ferramentas de detecção de vulnerabil
 
 ---
 
-### 3. **CSRF (Cross-Site Request Forgery)** ✅
+### 3. **CSRF (Cross-Site Request Forgery)** 
 **Severidade:** MEDIUM/HIGH  
 **Descrição:** Verifica se formulários possuem proteção CSRF  
 **Verificação:** Procura por tokens CSRF em formulários POST/PUT/DELETE
@@ -61,7 +61,7 @@ O Web Security Scanner agora possui **13 ferramentas de detecção de vulnerabil
 
 ---
 
-### 4. **Directory Traversal** ✅
+### 4. **Directory Traversal** 
 **Severidade:** HIGH  
 **Descrição:** Testa acesso não autorizado a arquivos do sistema  
 **Payloads testados:** 6 variações
@@ -78,7 +78,7 @@ O Web Security Scanner agora possui **13 ferramentas de detecção de vulnerabil
 
 ---
 
-### 5. **Information Disclosure** ✅
+### 5. **Information Disclosure** 
 **Severidade:** LOW/MEDIUM/HIGH  
 **Descrição:** Detecta exposição de informações sensíveis  
 **Padrões detectados:**
@@ -94,7 +94,7 @@ O Web Security Scanner agora possui **13 ferramentas de detecção de vulnerabil
 
 ---
 
-### 6. **Port Scan (Nmap Integration)** ✅ **NOVO!**
+### 6. **Port Scan (Nmap Integration)**  **NOVO!**
 **Severidade:** INFO  
 **Descrição:** Escaneia portas abertas do servidor alvo usando Nmap  
 **Funcionalidades:**
@@ -111,7 +111,7 @@ brew install nmap      # macOS
 
 ---
 
-### 7. **Security Headers Check** ✅ **NOVO!**
+### 7. **Security Headers Check**  **NOVO!**
 **Severidade:** LOW/MEDIUM/HIGH  
 **Descrição:** Verifica ausência de headers de segurança importantes  
 **Headers verificados:**
@@ -125,7 +125,7 @@ brew install nmap      # macOS
 
 ---
 
-### 8. **SSL/TLS Configuration Check** ✅ **NOVO!**
+### 8. **SSL/TLS Configuration Check**  **NOVO!**
 **Severidade:** HIGH (se vulnerável)  
 **Descrição:** Verifica configuração SSL/TLS do servidor  
 **Verificações:**
@@ -137,7 +137,7 @@ brew install nmap      # macOS
 
 ---
 
-### 9. **XXE (XML External Entity)** ✅ **NOVO!**
+### 9. **XXE (XML External Entity)**  **NOVO!**
 **Severidade:** HIGH  
 **Descrição:** Detecta potencial vulnerabilidade a ataques XXE  
 **Verificação:**
@@ -149,7 +149,7 @@ brew install nmap      # macOS
 
 ---
 
-### 10. **SSRF (Server-Side Request Forgery)** ✅ **NOVO!**
+### 10. **SSRF (Server-Side Request Forgery)**  **NOVO!**
 **Severidade:** HIGH  
 **Descrição:** Identifica parâmetros suspeitos que podem ser usados para SSRF  
 **Parâmetros suspeitos:**
@@ -162,7 +162,7 @@ brew install nmap      # macOS
 
 ---
 
-### 11. **Open Redirect** ✅ **NOVO!**
+### 11. **Open Redirect**  **NOVO!**
 **Severidade:** MEDIUM  
 **Descrição:** Detecta redirecionamentos não validados  
 **Verificação:**
@@ -172,7 +172,7 @@ brew install nmap      # macOS
 
 ---
 
-### 12. **CORS Misconfiguration** ✅ **NOVO!**
+### 12. **CORS Misconfiguration**  **NOVO!**
 **Severidade:** MEDIUM/HIGH  
 **Descrição:** Detecta configurações incorretas de CORS  
 **Verificações:**
@@ -182,7 +182,7 @@ brew install nmap      # macOS
 
 ---
 
-### 13. **Dangerous HTTP Methods** ✅ **NOVO!**
+### 13. **Dangerous HTTP Methods**  **NOVO!**
 **Severidade:** MEDIUM  
 **Descrição:** Verifica se métodos HTTP perigosos estão habilitados  
 **Métodos verificados:**
@@ -219,22 +219,22 @@ brew install nmap      # macOS
 
 | # | Vulnerabilidade | Status | Ferramentas |
 |---|----------------|--------|-------------|
-| A01 | Broken Access Control | ✅ Parcial | CSRF, Open Redirect, HTTP Methods |
-| A02 | Cryptographic Failures | ✅ | SSL/TLS Check, Information Disclosure |
-| A03 | Injection | ✅ Completo | XSS, SQL Injection, XXE |
-| A04 | Insecure Design | ✅ Parcial | Security Headers, CORS |
-| A05 | Security Misconfiguration | ✅ Completo | Security Headers, HTTP Methods, CORS, SSL/TLS |
-| A06 | Vulnerable Components | ⚠️ Info | Information Disclosure (versões) |
-| A07 | Authentication Failures | ⚠️ Planejado | - |
-| A08 | Software/Data Integrity | ✅ | XXE, Information Disclosure |
-| A09 | Security Logging | ⚠️ Info | Todos logs são registrados |
-| A10 | SSRF | ✅ | SSRF Detection, Open Redirect |
+| A01 | Broken Access Control |  Parcial | CSRF, Open Redirect, HTTP Methods |
+| A02 | Cryptographic Failures |  | SSL/TLS Check, Information Disclosure |
+| A03 | Injection |  Completo | XSS, SQL Injection, XXE |
+| A04 | Insecure Design |  Parcial | Security Headers, CORS |
+| A05 | Security Misconfiguration |  Completo | Security Headers, HTTP Methods, CORS, SSL/TLS |
+| A06 | Vulnerable Components |  Info | Information Disclosure (versões) |
+| A07 | Authentication Failures |  Planejado | - |
+| A08 | Software/Data Integrity |  | XXE, Information Disclosure |
+| A09 | Security Logging |  Info | Todos logs são registrados |
+| A10 | SSRF |  | SSRF Detection, Open Redirect |
 
 **Legenda:**
-- ✅ Completo: Detecção implementada e testada
-- ✅ Parcial: Detecção parcial implementada
-- ⚠️ Info: Informações coletadas mas sem detecção ativa
-- ⚠️ Planejado: Planejado para próximas versões
+-  Completo: Detecção implementada e testada
+-  Parcial: Detecção parcial implementada
+-  Info: Informações coletadas mas sem detecção ativa
+-  Planejado: Planejado para próximas versões
 
 ---
 
@@ -413,18 +413,18 @@ pip --version
 
 | Ferramenta | Tipo | XSS | SQLi | CSRF | Nmap | Headers | SSL/TLS | Facilidade |
 |------------|------|-----|------|------|------|---------|---------|-----------|
-| **Web Security Scanner** | Open | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⭐⭐⭐⭐⭐ |
-| OWASP ZAP | Open | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ⭐⭐⭐ |
-| Burp Suite | Commercial | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ⭐⭐ |
-| Nikto | Open | ⚠️ | ⚠️ | ❌ | ❌ | ✅ | ✅ | ⭐⭐⭐⭐ |
-| Nmap | Open | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ⭐⭐⭐⭐ |
-| SQLMap | Open | ❌ | ✅✅ | ❌ | ❌ | ❌ | ❌ | ⭐⭐⭐ |
+| **Web Security Scanner** | Open |  |  |  |  |  |  | ⭐⭐⭐⭐⭐ |
+| OWASP ZAP | Open |  |  |  |  |  |  | ⭐⭐⭐ |
+| Burp Suite | Commercial |  |  |  |  |  |  | ⭐⭐ |
+| Nikto | Open |  |  |  |  |  |  | ⭐⭐⭐⭐ |
+| Nmap | Open |  |  |  |  |  |  | ⭐⭐⭐⭐ |
+| SQLMap | Open |  |  |  |  |  |  | ⭐⭐⭐ |
 
 ---
 
 ## Aviso Legal
 
-**⚠️ USO APENAS EM AMBIENTES AUTORIZADOS ⚠️**
+** USO APENAS EM AMBIENTES AUTORIZADOS **
 
 Esta ferramenta deve ser usada APENAS:
 - Em aplicações próprias
@@ -496,34 +496,34 @@ Reporte problemas no repositório GitHub com:
 
 **Versão:** 2.1.0  
 **Data:** 31 de Outubro de 2025  
-**Status:** Produção ✅
+**Status:** Produção 
 
 ---
 
 ## Changelog
 
 ### v2.1.0 (31/10/2025) - NOVO!
-- ✅ Adicionado Nmap integration para port scanning
-- ✅ Adicionado Security Headers check (7 headers)
-- ✅ Adicionado SSL/TLS configuration check
-- ✅ Adicionado XXE detection
-- ✅ Adicionado SSRF parameter detection
-- ✅ Adicionado Open Redirect detection
-- ✅ Adicionado CORS misconfiguration check
-- ✅ Adicionado Dangerous HTTP Methods check
-- ✅ Melhorado Information Disclosure detection
-- ✅ Adicionado severity dinâmica baseada em tipo
-- ✅ Total: 13 ferramentas de detecção
+-  Adicionado Nmap integration para port scanning
+-  Adicionado Security Headers check (7 headers)
+-  Adicionado SSL/TLS configuration check
+-  Adicionado XXE detection
+-  Adicionado SSRF parameter detection
+-  Adicionado Open Redirect detection
+-  Adicionado CORS misconfiguration check
+-  Adicionado Dangerous HTTP Methods check
+-  Melhorado Information Disclosure detection
+-  Adicionado severity dinâmica baseada em tipo
+-  Total: 13 ferramentas de detecção
 
 ### v2.0.0 (30/10/2025)
-- ✅ Implementação Conceito A completo
-- ✅ Dashboard interativo
-- ✅ Sistema de autenticação
-- ✅ Docker containerization
-- ✅ CI/CD com GitHub Actions
+-  Implementação Conceito A completo
+-  Dashboard interativo
+-  Sistema de autenticação
+-  Docker containerization
+-  CI/CD com GitHub Actions
 
 ### v1.0.0 (29/10/2025)
-- ✅ Conceito C: CLI básico
-- ✅ XSS e SQL Injection detection
-- ✅ Conceito B: 5 vulnerabilidades
-- ✅ Múltiplos formatos de relatório
+-  Conceito C: CLI básico
+-  XSS e SQL Injection detection
+-  Conceito B: 5 vulnerabilidades
+-  Múltiplos formatos de relatório

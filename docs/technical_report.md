@@ -117,7 +117,7 @@ O Web Security Scanner é uma ferramenta automatizada desenvolvida em Python par
 
 #### 5.1 Capacidades Implementadas
 
-✅ **Funcionalidades**:
+ **Funcionalidades**:
 - Varredura básica de URLs
 - Detecção de XSS refletido
 - Detecção de SQL Injection baseada em erros
@@ -126,7 +126,7 @@ O Web Security Scanner é uma ferramenta automatizada desenvolvida em Python par
 - Relatórios em texto e JSON
 - Logging detalhado
 
-✅ **Testes Unitários**:
+ **Testes Unitários**:
 - 9 testes implementados
 - 100% de cobertura dos componentes básicos
 - Validação de URLs
@@ -223,11 +223,11 @@ Modo verbose para entender o que está sendo testado.
 ### 9. Conclusão
 
 A implementação do Conceito C atende aos requisitos básicos:
-- ✅ Varredura simples funcional
-- ✅ Detecção de XSS e SQLi
-- ✅ Interface CLI usável
-- ✅ Relatórios básicos
-- ✅ Testes unitários
+-  Varredura simples funcional
+-  Detecção de XSS e SQLi
+-  Interface CLI usável
+-  Relatórios básicos
+-  Testes unitários
 
 O sistema está preparado para evolução para os Conceitos B e A, com arquitetura modular e código bem documentado.
 

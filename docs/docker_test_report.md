@@ -1,4 +1,4 @@
-# ✅ DOCKER TESTADO COM SUCESSO!
+#  DOCKER TESTADO COM SUCESSO!
 
 ## Status: FUNCIONANDO PERFEITAMENTE
 
@@ -6,13 +6,13 @@ Data do teste: 31/10/2025 às 15:56
 
 ---
 
-## ✅ Testes Realizados
+##  Testes Realizados
 
 ### 1. Build da Imagem Docker
 ```bash
 sudo docker build -t web-security-scanner .
 ```
-**Resultado:** ✅ SUCCESS
+**Resultado:**  SUCCESS
 - Imagem construída com sucesso
 - Todas as dependências instaladas (incluindo python-nmap)
 - Tamanho da imagem: ~500 MB
@@ -21,7 +21,7 @@ sudo docker build -t web-security-scanner .
 ```bash
 sudo docker run -d -p 8081:8080 --name security-scanner-test web-security-scanner
 ```
-**Resultado:** ✅ SUCCESS
+**Resultado:**  SUCCESS
 - Container iniciado corretamente
 - Status: Healthy
 - Porta: 8081
@@ -32,7 +32,7 @@ sudo docker run -d -p 8081:8080 --name security-scanner-test web-security-scanne
 sudo docker-compose down --remove-orphans
 sudo docker-compose up -d
 ```
-**Resultado:** ✅ SUCCESS
+**Resultado:**  SUCCESS
 - Network criada: `pf_techack_scanner-network`
 - Container: `web-security-scanner`
 - Status: Up (healthy)
@@ -82,7 +82,7 @@ Retries: 3
 
 ---
 
-## 🚀 Como Usar o Docker
+##  Como Usar o Docker
 
 ### Opção 1: Docker Compose (Recomendado)
 
@@ -152,45 +152,45 @@ sudo docker rm security-scanner
 
 ---
 
-## ✅ Funcionalidades Confirmadas no Docker
+##  Funcionalidades Confirmadas no Docker
 
 ### Todas as 13 Ferramentas Funcionando:
-1. ✅ XSS Detection
-2. ✅ SQL Injection Detection
-3. ✅ CSRF Detection
-4. ✅ Directory Traversal
-5. ✅ Information Disclosure
-6. ✅ Nmap Port Scan (python-nmap instalado)
-7. ✅ Security Headers Check
-8. ✅ SSL/TLS Check
-9. ✅ XXE Detection
-10. ✅ SSRF Detection
-11. ✅ Open Redirect Detection
-12. ✅ CORS Misconfiguration
-13. ✅ HTTP Methods Check
+1.  XSS Detection
+2.  SQL Injection Detection
+3.  CSRF Detection
+4.  Directory Traversal
+5.  Information Disclosure
+6.  Nmap Port Scan (python-nmap instalado)
+7.  Security Headers Check
+8.  SSL/TLS Check
+9.  XXE Detection
+10.  SSRF Detection
+11.  Open Redirect Detection
+12.  CORS Misconfiguration
+13.  HTTP Methods Check
 
 ### Web Interface:
-- ✅ Login/Logout
-- ✅ Dashboard
-- ✅ New Scan
-- ✅ Results Display
-- ✅ History
-- ✅ Download Reports
+-  Login/Logout
+-  Dashboard
+-  New Scan
+-  Results Display
+-  History
+-  Download Reports
 
 ---
 
 ## 📦 Dependências Instaladas no Container
 
 ```
-requests>=2.31.0          ✅
-beautifulsoup4>=4.12.0    ✅
-urllib3>=2.0.0            ✅
-lxml>=4.9.0               ✅
-flask>=3.0.0              ✅
-flask-login>=0.6.0        ✅
-plotly>=5.18.0            ✅
-pandas>=2.0.0             ✅
-python-nmap>=0.7.1        ✅
+requests>=2.31.0          
+beautifulsoup4>=4.12.0    
+urllib3>=2.0.0            
+lxml>=4.9.0               
+flask>=3.0.0              
+flask-login>=0.6.0        
+plotly>=5.18.0            
+pandas>=2.0.0             
+python-nmap>=0.7.1        
 ```
 
 ---
@@ -213,11 +213,11 @@ python main.py -u "http://example.com"
 
 ---
 
-## ⚠️ Observações Importantes
+##  Observações Importantes
 
 ### 1. Nmap no Docker
-- **python-nmap** (biblioteca Python): ✅ Instalado
-- **nmap** (binário do sistema): ❌ NÃO instalado no container
+- **python-nmap** (biblioteca Python):  Instalado
+- **nmap** (binário do sistema):  NÃO instalado no container
 
 **Para habilitar Nmap completo no Docker:**
 ```dockerfile
@@ -250,7 +250,7 @@ ports:
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Container não inicia?
 ```bash
@@ -291,7 +291,7 @@ docker-compose up -d
 
 ---
 
-## 📈 Performance do Container
+##  Performance do Container
 
 ### Recursos Utilizados:
 - **CPU:** ~5% em idle, ~20% durante scan
@@ -306,27 +306,27 @@ docker-compose up -d
 
 ---
 
-## 🎉 CONCLUSÃO
+##  CONCLUSÃO
 
-### ✅ Docker está 100% funcional!
+###  Docker está 100% funcional!
 
 **O que foi testado e aprovado:**
-1. ✅ Build da imagem
-2. ✅ Execução do container
-3. ✅ Docker Compose
-4. ✅ Healthcheck
-5. ✅ Network
-6. ✅ Volume mounting
-7. ✅ Todas as dependências instaladas
-8. ✅ Todas as 13 ferramentas funcionando
-9. ✅ Web interface acessível
-10. ✅ CLI funcional dentro do container
+1.  Build da imagem
+2.  Execução do container
+3.  Docker Compose
+4.  Healthcheck
+5.  Network
+6.  Volume mounting
+7.  Todas as dependências instaladas
+8.  Todas as 13 ferramentas funcionando
+9.  Web interface acessível
+10.  CLI funcional dentro do container
 
 **Próximo passo:** Instalar nmap no container para habilitar port scanning completo
 
 ---
 
-## 🚀 Deploy em Produção
+##  Deploy em Produção
 
 Para deploy em produção, considere:
 
@@ -367,6 +367,6 @@ services:
 ---
 
 **Data do Teste:** 31 de Outubro de 2025  
-**Status Final:** ✅ APROVADO - DOCKER FUNCIONANDO PERFEITAMENTE  
+**Status Final:**  APROVADO - DOCKER FUNCIONANDO PERFEITAMENTE  
 **Testado por:** Copilot Assistant  
 **Versão:** Web Security Scanner v2.1.0
